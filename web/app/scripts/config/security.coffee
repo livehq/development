@@ -1,9 +1,8 @@
 define(['./../app', './configuration'], ->
 #  streamCommander.app
-#  .config ["$sceDelegateProvider", ($sceDelegateProvider) ->
+#  .config ["$sceDelegateProvider", "configuration", ($sceDelegateProvider, configuration) ->
 #      console.log('inside scedelegate')
-#      console.log(constants)
-#      $sceDelegateProvider.resourceUrlWhitelist constants.whitelist
+#      $sceDelegateProvider.resourceUrlWhitelist configuration.whitelist
 #  ]
 #
 #  streamCommander.app

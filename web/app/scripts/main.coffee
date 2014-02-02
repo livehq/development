@@ -10,33 +10,33 @@ root.window.scrollTo = ->
 
 require.config({
   paths: {
+    config: 'config',
+    angular: "#{components}angular/angular",
+    domReady: "#{components}requirejs-domready/domReady",
+    oauthJs: "#{components}oauth-js/oauth",
+    loglevel: "#{components}loglevel/lib/loglevel",
+    namespace: 'lib/namespace'
 #    websocketRails: narwhaltalkLibs + 'websocket_rails',
 #    jquery: narwhalComponents + 'jquery/jquery',
-    config: 'config',
-    angular: components + 'angular/angular',
-    domReady: components + 'requirejs-domready/domReady',
-    oauthJs: "#{components}oauth-js/oauth",
 #    angularResource: narwhalComponents + 'angular-resource/angular-resource',
 #    angularCookies: narwhalComponents + 'angular-cookies/angular-cookies',
 #    angularSanitize: narwhalComponents + 'angular-sanitize/angular-sanitize',
 #    jsdebugRails: narwhalComponents + 'jsdebug-rails/lib/generators/jsdebug/install/templates/jsdebug',
 #    jqueryAtmosphere: camfireComponents + 'atmosphere-javascript/modules/jquery/src/main/webapp/jquery/jquery.atmosphere',
 ##    async: narwhalComponents + 'async/lib/async',
-    namespace: 'lib/namespace',
   },
 
   shim: {
 #  'jquery': {},
-#  'jsdebugRails': {},
 #  'jqueryAtmosphere': {
 #    deps: ['jquery']
 #  },
 ##    'async': {}
-  'namespace': {},
-  'config': {}
-#  'webRtcAdapter': {},
-  'angular': {},
-  'oauthJs': {},
+  'namespace' : {},
+  'config'    : {},
+  'angular'   : {},
+  'oauthJs'   : {},
+  'loglevel'  : {},
 #  'angularResource': {
 #    deps: ['angular']
 #  },
@@ -58,13 +58,14 @@ require.config({
 });
 
 require([
+  'loglevel',
   './config',
   './config/configuration',
   './config/security',
   './config/routes',
-  './controllers/main'
-
-  ,'./services/users_service'
+  './controllers/main',
+  './services/users_service'
+  './services/initialization_service'
 
 #  './services/configuration_service',
 

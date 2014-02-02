@@ -1,4 +1,5 @@
-define([], ->
+define(['./../module'], ->
+
   ((exports) ->
     # List all the roles you wish to use in the app
     #        * You have a max of 31 before the bit shift pushes the accompanying integer out of
@@ -64,5 +65,20 @@ define([], ->
     exports.userRoles = buildRoles(config.roles)
     exports.accessLevels = buildAccessLevels(config.accessLevels, exports.userRoles)
   ) (if typeof exports is "undefined" then this["routingConfig"] = {} else exports)
-)
 
+
+  class RolesService
+#    constructor: ($http) ->
+
+#    getAll: (success, error) ->
+#      $http.get("/users").success(success).error error
+
+
+
+
+
+
+  namespace 'auth', (exports) ->
+    exports.RolesService = RolesService
+    exports.module.service 'rolesService', RolesService
+)

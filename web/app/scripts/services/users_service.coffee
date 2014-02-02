@@ -1,4 +1,4 @@
-define(['./../modules/auth/services'], ->
+define(['./../modules/auth/services/users_service'], ->
   class UsersService extends auth.UsersService
 
   namespace 'auth', (exports) ->

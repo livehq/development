@@ -1,6 +1,5 @@
-"use strict"
-define(['./module'], ->
-  angular.module("auth").directive "accessLevel", ["Auth", (Auth) ->
+define(['../module'], ->
+  accessLevelDirective = (Auth) ->
     restrict: "A"
     link: ($scope, element, attrs) ->
       updateCSS = ->
@@ -21,19 +20,6 @@ define(['./module'], ->
         accessLevel = $scope.$eval(al)  if al
         updateCSS()
 
-  ]
-  angular.module("auth").directive "activeNav", ["$location", ($location) ->
-    restrict: "A"
-    link: (scope, element, attrs) ->
-      nestedA = element.find("a")[0]
-      path = nestedA.href
-      scope.location = $location
-      scope.$watch "location.absUrl()", (newPath) ->
-        if path is newPath or path is newPath + "/" or path + "/" is newPath
-          element.addClass "active"
-        else
-          element.removeClass "active"
-
-  ]
-
+  namespace 'auth', (exports) ->
+    exports.module.directive "accessLevel", ["Auth", accessLevelDirective]
 )

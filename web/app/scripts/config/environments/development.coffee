@@ -1,4 +1,4 @@
-define([], ->
+define(['loglevel'], (log) ->
   class DevelopmentConfiguration
     whitelist: ["self", "http://localhost:3000/**", "http://localhost:9000/**"]
     oauthioPublickey: 'otTvGcYtLMK1Q6W6d8LHeQlO4lo'
@@ -6,7 +6,6 @@ define([], ->
     oauthio: {
       publicKey: 'otTvGcYtLMK1Q6W6d8LHeQlO4lo'
       callbackUri: 'http://localhost:3000/users/auth/oauthio/callback'
-
     }
 
     siteOptions: {
@@ -17,6 +16,14 @@ define([], ->
       }
     }
 
+    api: {
+      baseUrl: 'http://localhost:3000/api/v1'
+      allAggregateUrl: "http://localhost:3000/api/v1/aggregates/all"
+    }
+
+    log: {
+      level: 'debug'
+    }
 
 #    signalSecure: false
 #    signalUrl: window.location.hostname + ':8080'
