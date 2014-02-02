@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable,
-         :omniauth_providers => [:oauthio]
+         omniauth_providers: [:oauthio]
 
   has_many :identities
 
