@@ -1,6 +1,12 @@
-define(['./../module'], ->
+define(['loglevel', './../module'], (log) ->
+
 
   ((exports) ->
+
+    Function::property = (prop, desc) ->
+      Object.defineProperty @prototype, prop, desc
+
+
     # List all the roles you wish to use in the app
     #        * You have a max of 31 before the bit shift pushes the accompanying integer out of
     #        * the memory footprint for an integer
@@ -68,14 +74,44 @@ define(['./../module'], ->
 
 
   class RolesService
-#    constructor: ($http) ->
+    _roles: []
 
-#    getAll: (success, error) ->
-#      $http.get("/users").success(success).error error
+    @property 'roles',
+      get: -> @_roles
+      set: (roles) ->
+        @_roles = @buildRoles(roles)
+        log.debug("Available roles: ")
+        log.debug(@_roles)
 
+    constructor: () ->
 
+    # List all the roles you wish to use in the app
+    #        * You have a max of 31 before the bit shift pushes the accompanying integer out of
+    #        * the memory footprint for an integer
+    #
+    #
+    #        Build out all the access levels you want referencing the roles listed above
+    #        You can use the "*" symbol to represent access to all roles
+    #
+    #
+    #        Method to build a distinct bit mask for each role
+    #        It starts off with "1" and shifts the bit to the left for each element in the
+    #        roles array parameter
+    #
+    buildRoles: (roles) ->
+      bitMask = "01"
+      userRoles = {}
+      for role of roles
+        intCode = parseInt(bitMask, 2)
+        userRoles[roles[role]] =
+          bitMask: intCode
+          title: roles[role]
 
+        bitMask = (intCode << 1).toString(2)
+      userRoles
 
+    setRoles: (roles) ->
+      @_roles = @buildRoles(roles)
 
 
   namespace 'auth', (exports) ->

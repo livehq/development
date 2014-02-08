@@ -1,12 +1,12 @@
-define(['loglevel', './../app'], (log) ->
+define(['loglevel', './../app', './../modules/auth/services/roles_service'], (log) ->
   class InitializationService
     constructor: (@$http, @configuration, @rolesService) ->
 
     initSite: ->
-      log.debug('calling service')
-      @$http.get(@configuration.api.allAggregateUrl).success((response) ->
-        log.debug(response)
-      ).error((response) ->
+      log.debug("Making request to: #{@configuration.api.allAggregateUrl}")
+      @$http.get(@configuration.api.allAggregateUrl).success((response) =>
+        @rolesService.roles = response.roles
+      ).error((response) =>
         log.debug(response)
       )
 

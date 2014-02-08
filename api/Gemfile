@@ -20,8 +20,6 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-oauthio', path: '/Users/jonathan/code/github.com/jgrowl/omniauth-oauthio'
 
-#gem 'doorkeeper', '~> 0.7.0'
-
 gem 'rack-cors', :require => 'rack/cors'
 
 # Authorization

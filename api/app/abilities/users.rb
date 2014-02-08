@@ -1,5 +1,7 @@
 Canard::Abilities.for(:user) do
 
+  can :read, Aggregate
+
   # Define abilities for the user role here. For example:
   #
   #   if user.admin?

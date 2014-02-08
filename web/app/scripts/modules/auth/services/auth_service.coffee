@@ -1,4 +1,4 @@
-define(['./../module', './roles_service', './users_service' ], ->
+define(['loglevel', './../module', './roles_service', './users_service' ], (log) ->
   class AuthService
     constructor: (@$http, @$cookieStore, @configuration, usersService) ->
       @userRoles = routingConfig.userRoles
@@ -29,8 +29,11 @@ define(['./../module', './roles_service', './users_service' ], ->
 
     login: (user, success, error) ->
       url = @configuration.oauthio.callbackUri
+      log.debug("Making request to login: #{url}")
       json = JSON.stringify(user.res)
       @$http.post(url, json).success((response) ->
+        log.debug("Request was successful: ")
+        log.debug(response)
         changeUser(response.user)
         success()
       ).error(error)

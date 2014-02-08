@@ -6,10 +6,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable,
          omniauth_providers: [:oauthio]
 
-  has_many :identities
+  acts_as_user roles: [:admin, :user]
 
-  include RoleModel
-  roles :admin, :user
+  has_many :identities
 
   def self.create_for_oauthio_oauth(auth, identity)
     user = User.create(
@@ -22,4 +21,5 @@ class User < ActiveRecord::Base
     )
     user
   end
+
 end

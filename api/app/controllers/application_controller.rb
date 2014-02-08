@@ -4,13 +4,18 @@ class ApplicationController < ActionController::Base
   #protect_from_forgery with: :exception
   protect_from_forgery with: :null_session
 
-  #load_and_authorize_resource
+  # Token authentication
+  before_filter :authenticate_user_from_token!
+  # This is Devise's authentication
+  before_filter :authenticate_user!
+
+  #This will raise an exception if authorization is not performed in an action.
+  # If you want to skip this add skip_authorization_check to a controller subclass.
   check_authorization
 
   rescue_from CanCan::AccessDenied do |exception|
     render json: {error: exception.message}
   end
-
 
   def authenticate_user_from_token!
     email = params[:email].presence

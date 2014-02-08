@@ -52,6 +52,7 @@ require.config({
 
   deps: [
     './modules/oauthio/main',
+    './modules/angular-cancan',
     './modules/auth/main',
     './bootstrap'
   ]
