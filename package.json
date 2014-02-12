@@ -1,0 +1,29 @@
+{
+  "name": "cancanjs",
+  "version": "0.1.0",
+  "description": "A bridge between cancan and javascript",
+  "main": "dist/main.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:jgrowl/cancanjs.git"
+  },
+  "author": "Jonathan Rowlands",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jgrowl/cancanjs/issues"
+  },
+  "devDependencies": {
+    "coffee-script": "~1.6.3",
+    "gulp": "~3.2.4",
+    "run-sequence":  "~0.3.3",
+    "gulp-coffee": "~1.2.5",
+    "gulp-concat": "~2.1.7",
+    "gulp-jasmine": "~0.1.3",
+    "gulp-uglify": "~0.1.0",
+    "gulp-util": "~2.2.6",
+    "gulp-wrap-umd": "~0.1.0"
+  }
+}
