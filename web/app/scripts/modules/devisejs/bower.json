@@ -1,0 +1,24 @@
+{
+  "name": "devisejs",
+  "version": "0.0.0",
+  "homepage": "https://github.com/jgrowl/devisejs",
+  "authors": [
+    "Jonathan Rowlands <jonrowlands83@gmail.com>"
+  ],
+  "description": "Simple devise functionality in javascript",
+  "main": "build/devise.js",
+  "keywords": [
+    "devise",
+    "coffeescript",
+    "auth",
+    "authentication"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
