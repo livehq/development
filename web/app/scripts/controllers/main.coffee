@@ -1,5 +1,4 @@
 'use strict'
-define(['./../app'], ->
 #  class MainCtrl
 #    constructor: ($scope) ->
 #      $scope.awesomeThings = [
@@ -16,4 +15,3 @@ define(['./../app'], ->
 #
 #
 #
-)

@@ -1,29 +1,28 @@
-define(['loglevel'], (log) ->
-  class DevelopmentConfiguration
-    whitelist: ["self", "http://localhost:3000/**", "http://localhost:9000/**"]
-    oauthioPublickey: 'otTvGcYtLMK1Q6W6d8LHeQlO4lo'
+class DevelopmentConfiguration
+  whitelist: ["self", "http://localhost:3000/**", "http://localhost:9000/**"]
+  oauthioPublickey: 'otTvGcYtLMK1Q6W6d8LHeQlO4lo'
 
-    oauthio: {
-      publicKey: 'otTvGcYtLMK1Q6W6d8LHeQlO4lo'
-      callbackUri: 'http://localhost:3000/users/auth/oauthio/callback'
-    }
+  oauthio: {
+    publicKey: 'otTvGcYtLMK1Q6W6d8LHeQlO4lo'
+    callbackUri: 'http://localhost:3000/users/auth/oauthio/callback'
+  }
 
-    siteOptions: {
-      enableRegistration: false,
-      login: {
-        enableForm: false,
-        enableOauth: true
-      }
+  siteOptions: {
+    enableRegistration: false,
+    login: {
+      enableForm: false,
+      enableOauth: true
     }
+  }
 
-    api: {
-      baseUrl: 'http://localhost:3000/api/v1'
-      allAggregateUrl: "http://localhost:3000/api/v1/aggregates/all"
-    }
+  api: {
+    baseUrl: 'http://localhost:3000/api/v1'
+    allAggregateUrl: "http://localhost:3000/api/v1/aggregates/all"
+  }
 
-    log: {
-      level: 'debug'
-    }
+  log: {
+    level: 'debug'
+  }
 
 #    signalSecure: false
 #    signalUrl: window.location.hostname + ':8080'
@@ -61,7 +60,6 @@ define(['loglevel'], (log) ->
 #      }
 #    }
 
-  namespace 'streamCommander', (exports) ->
-    exports.DevelopmentConfiguration = DevelopmentConfiguration
-)
+namespace 'streamCommander', (exports) ->
+  exports.DevelopmentConfiguration = DevelopmentConfiguration
 
