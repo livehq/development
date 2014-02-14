@@ -1,6 +1,7 @@
 #streamCommander.app
 #.config ["$sceDelegateProvider", "configuration", ($sceDelegateProvider, configuration) ->
 #    console.log('inside scedelegate')
+#    console.log(configuration.whitelist)
 #    $sceDelegateProvider.resourceUrlWhitelist configuration.whitelist
 #]
 #

@@ -1,8 +1,16 @@
 {
   "name": "web",
   "version": "0.0.0",
+  "browser": {
+    "log": "./node_modules/loglevel/dist/loglevel.js",
+    "devisejs": "./node_modules/devisejs/build/devise.js",
+    "cancanjs": "./node_modules/cancanjs/build/cancan.js"
+  },
   "dependencies": {
-    "wiredep": "~0.5.2"
+    "wiredep": "~0.5.2",
+    "loglevel": "~0.5.0",
+    "devisejs": "git://github.com/jgrowl/devisejs.git#master",
+    "cancanjs": "git://github.com/jgrowl/cancanjs.git#master"
   },
   "devDependencies": {
     "coffee-script": "~1.6.3",

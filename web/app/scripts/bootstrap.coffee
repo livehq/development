@@ -1,3 +1,5 @@
+log = require('log')
+
 $injector = angular.bootstrap(document, ['webApp'])
 configuration = $injector.get('configuration')
 

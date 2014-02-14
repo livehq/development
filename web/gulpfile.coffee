@@ -25,7 +25,7 @@ gulp.task "styles", ->
 gulp.task "coffee", ->
   gulp.src("app/scripts/main.coffee", {read: false})
   .pipe($.browserify({
-#    insertGlobals: true
+    #insertGlobals: true
     debug: !$.util.env == 'production'
     transform: ["coffeeify"]
     extensions: [".coffee"]
@@ -91,12 +91,12 @@ gulp.task "connect", $.connect.server(
 # Watch
 gulp.task "watch", ["connect"], ->
   # Watch for changes in `app` folder
-  gulp.watch [
-    "app/*.html"
-    "app/styles/**/*.css"
-    "app/scripts/**/*.js"
-    "app/images/**/*"
-  ], $.connect.reload
+#  gulp.watch [
+#    "app/*.html"
+#    "app/styles/**/*.css"
+#    "app/scripts/**/*.js"
+#    "app/images/**/*"
+#  ], $.connect.reload
 
   # Watch .html files
   gulp.watch "app/**/*.html", ["html"]
