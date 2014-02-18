@@ -2,6 +2,7 @@
 
 gulp = require("gulp")
 wiredep = require("wiredep")
+modrewrite = require("connect-modrewrite")
 
 # Load plugins
 $ = require("gulp-load-plugins")()
@@ -11,7 +12,7 @@ $ = require("gulp-load-plugins")()
 wiredep({
   directory: "dist/bower_components"
   bowerJson: require("./bower.json")
-  src: "app/index.html"
+  src: "app/index.jade"
   ignorePath: "dist/"
 })
 
@@ -19,7 +20,7 @@ wiredep({
 gulp.task "styles", ->
   gulp.src("app/styles/main.scss").pipe($.rubySass(
     style: "expanded"
-    loadPath: ["app/bower_components"]
+    loadPath: ["dist/bower_components"]
   )).pipe($.autoprefixer("last 1 version")).pipe($.csso()).pipe(gulp.dest("dist/styles")).pipe $.size()
 
 gulp.task "coffee", ->
@@ -41,6 +42,12 @@ gulp.task "coffee", ->
 #  .pipe($.concat("main.js"))
 #  .pipe($.uglify())
 #  .pipe(gulp.dest("dist/scripts")).pipe $.size()
+
+# Jade
+gulp.task "jade", ->
+  gulp.src("app/**/*.jade")
+  .pipe($.jade())
+  .pipe(gulp.dest("dist")).pipe $.size()
 
 # HTML
 gulp.task "html", ->
@@ -69,10 +76,10 @@ gulp.task "clean", ->
 
 # Build
 gulp.task "build", [
-  "html"
+#  "html"
+  "jade"
   "styles"
   "coffee"
-#  "scripts"
   "images"
 ]
 
@@ -86,32 +93,42 @@ gulp.task "connect", $.connect.server(
 #  root: __dirname + "/app"
   port: 9000
   livereload: true
+
+  middleware: (connect, options) ->
+    optBase = (if (typeof options.root is "string") then [options.root] else options.root)
+    [modrewrite(["!(\\..+)$ /index.html [L]"])].concat optBase.map((path) ->
+      console.log(path)
+      connect.static path
+    )
+
+#  open: {
+#      browser: 'chrome'
+#  }
 )
 
 # Watch
 gulp.task "watch", ["connect"], ->
   # Watch for changes in `app` folder
-#  gulp.watch [
+  gulp.watch [
 #    "app/*.html"
-#    "app/styles/**/*.css"
-#    "app/scripts/**/*.js"
-#    "app/images/**/*"
-#  ], $.connect.reload
+    "app/**/*.jade"
+    "app/styles/**/*.css"
+    "app/scripts/**/*.coffee"
+    "app/images/**/*"
+  ], $.connect.reload
 
   # Watch .html files
   gulp.watch "app/**/*.html", ["html"]
 
+  # Watch .jade files
+  gulp.watch "app/**/*.jade", ["jade"]
+
   # Watch .scss files
   gulp.watch "app/styles/**/*.scss", ["styles"]
 
-  # Watch .js files
-#  gulp.watch "app/scripts/**/*.js", ["scripts"]
+  # Watch .coffee files
   gulp.watch "app/scripts/**/*.coffee", ["coffee"]
 
   # Watch image files
   gulp.watch "app/images/**/*", ["images"]
-
-
-
-
 

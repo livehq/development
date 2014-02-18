@@ -3,10 +3,10 @@
 NAMESPACE = 'streamCommander'
 app = angular.module('webApp', [
   'config',
-#  'ngCookies',
-#  'ngResource',
-#  'ngSanitize',
-#  'ngRoute',
+  'ngCookies',
+  'ngResource',
+  'ngSanitize',
+  'ngRoute',
 #  'oauthio',
 #  'auth'
 ])

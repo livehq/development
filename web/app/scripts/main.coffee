@@ -8,9 +8,17 @@ require('./config/security')
 require('./config/routes')
 
 # Controllers
-require('./controllers/main')
+require('./controllers/home_controller')
+require('./controllers/login_controller')
+require('./controllers/head_panel_controller')
+
+# Services
+require('./services/current_user_service')
 require('./services/initialization_service')
 
+# Directives
+
+# Bootstrap
 require('./bootstrap')
 
 #  './config',

@@ -1,0 +1,9 @@
+h1 Log in
+
+div(ng-show="configuration.siteOptions.login.enableForm")
+    hr
+    include _new_base
+
+div(ng-show="configuration.siteOptions.login.enableOauth")
+    hr
+    include _oauth_providers

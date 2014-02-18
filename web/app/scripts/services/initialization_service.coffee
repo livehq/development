@@ -3,12 +3,13 @@ cancan = require('cancanjs')
 devise = require('devisejs')
 
 class InitializationService
-  constructor: (@$http, @configuration) ->
+  constructor: (@$http, @configuration, @currentUser) ->
 
   initSite: ->
     log.debug("Making request to: #{@configuration.api.allAggregateUrl}")
     @$http.get(@configuration.api.allAggregateUrl).success((response) =>
-      devise.loadRoles(response.roles)
+      @currentUser.loadRoles(response.roles)
+#      devise.loadRoles(response.roles)
     ).error((response) =>
       log.debug(response)
     )
